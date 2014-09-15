@@ -10,7 +10,7 @@ form = cgi.FieldStorage()
 fileitem = form['file']
 pilot = fileitem.file
 
-score = TFR.plong(pilot,4)
+score = TFR.score(pilot)
 lasersfired = TFR.plong(pilot,1908)
 warheadsfired = TFR.pword(pilot,1920)
 laserhits = TFR.plong(pilot,1912)

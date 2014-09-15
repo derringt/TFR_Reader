@@ -2,11 +2,6 @@ import os
 import io
 from struct import unpack
 
-<<<<<<< HEAD
-=======
-ranks = ['Cadet', 'Officer', 'Lieutenant', 'Captain', 'Commander', 'General']
-
->>>>>>> f821efc6b203702f58b4ee034a676935e023269c
 def pbyte(file, pos):
     file.seek(pos)
     return unpack('B',file.read(1))[0]
@@ -18,17 +13,25 @@ def pword(file, pos):
 def plong(file, pos):
     file.seek(pos)
     return unpack('<L', file.read(4))[0]
-<<<<<<< HEAD
-=======
 
-file = 'test.tfr'
-pilot = open(file, 'rb')
+def status(file):
+    pilotstatus = ['Alive','Captured','Killed']
+    return pilotstatus[pbyte(file, 1)]
 
-score = plong(pilot, 4)
-print 'Score = ' + `score`
+def rank(file):
+    pilotrank = ['Cadet','Officer','Lieutenant','Captain','Commander','General']
+    return pilotrank[pbyte(file, 2)]
 
-rank = pbyte(pilot, 2)
-print ranks[rank]
+def difficulty(file):
+    difficultyrating = ['Easy','Normal','Hard']
+    return difficultyrating[pbyte(file, 3)]
 
-pilot.close()
->>>>>>> f821efc6b203702f58b4ee034a676935e023269c
+def score(file):
+    return plong(file, 4)
+
+def skill(file):
+    return pword(file, 8)
+
+def secretorder(file):
+    secretorderrank = ['None','First','Second','Third','Fourth','Inner',"Emperor's Hand","Emperor's Eyes","Emperor's Voice","Emperor's Reach"]
+    return secretorderrank[pbyte(file, 10)]
