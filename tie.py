@@ -6,7 +6,7 @@ import tfr_reader as TFR
 
 form = cgi.FieldStorage()
 
-# Get filename here.
+# Read file data
 fileitem = form['file']
 pilot = fileitem.file
 
@@ -17,8 +17,6 @@ laserhits = TFR.plong(pilot,1912)
 warheadhits = TFR.plong(pilot,1922)
 laserless = score - (laserhits * 3)
 golf = score + (lasersfired * 2) + (warheadsfired * 100) - (laserhits * 3) - (warheadhits * 100)
-
-#data = fileitem[2]
 
 print("""\
 Content-Type: text/html\n
